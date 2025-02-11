@@ -1,5 +1,8 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 export const useProductStore = defineStore("productStore", () => {
     const products = ref([])
@@ -17,12 +20,12 @@ export const useProductStore = defineStore("productStore", () => {
                 title: product.title,
                 price: product.price,
                 description: product.description,
-                iamge: product.image,
+                image: product.image,
                 category: product.category
             })
         }).then(res => res.json())
             .then(json => console.log(json))
-            
+
         products.value.push(product)
     }
 
