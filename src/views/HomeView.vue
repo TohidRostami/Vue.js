@@ -1,19 +1,21 @@
 <script setup>
 import {useProductStore} from '../stores/useProductStore';
-import { watchEffect  } from 'vue';
+import { onMounted  } from 'vue';
 import ProductItem from '../components/ProductItem.vue';
 
 const productStore = useProductStore();
 
 const {products,loadProducts} = productStore;
 
-watchEffect(async () => {
+onMounted(async () => {
   if (products.length === 0) {
     const response = await fetch('https://fakestoreapi.com/products');
         const data = await response.json();
         loadProducts(data);
   }
 });
+ 
+ 
 </script>
 
 <template> 
